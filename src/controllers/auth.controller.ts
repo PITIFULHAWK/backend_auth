@@ -18,7 +18,7 @@ if (!process.env.JWT_SECRET) {
     process.exit(1);
 }
 
-export const signup = async (req: Request, res: Response) => {
+export const signup = async (req: Request, res: Response): Promise<any> => {
     try {
         const { fullname, email, password } = req.body;
 
@@ -60,7 +60,7 @@ export const signup = async (req: Request, res: Response) => {
     }
 };
 
-export const login = async (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response): Promise<any> => {
     try {
         const { email, password } = req.body;
 
@@ -116,7 +116,7 @@ export const protect = async (
     req: Request,
     res: Response,
     next: NextFunction
-) => {
+): Promise<any> => {
     let token;
 
     if (req.cookies && req.cookies.token) {
@@ -173,6 +173,7 @@ export const getMe = async (req: Request, res: Response): Promise<void> => {
                     updatedAt: req.user.updatedAt,
                 },
             });
+            return;
         }
     } catch (error) {
         res.status(401).json({
