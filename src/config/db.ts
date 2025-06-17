@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const connectDB = async () => {
   try {
-    const mongoURL = process.env.MONGO_URL || 'mongodb://localhost:27017/myauthapp';
+    const mongoURL = process.env.MONGO_URL || 'mongodb://mongodb:27017/myauthapp';
 
     await mongoose.connect(mongoURL);
     console.log('MongoDB Connected Successfully!');

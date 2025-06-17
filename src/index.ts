@@ -5,6 +5,7 @@ import authRoute from "./routes/auth.routes";
 import connectDB from "./config/db";
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 connectDB();
 
