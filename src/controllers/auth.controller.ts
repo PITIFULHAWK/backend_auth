@@ -26,7 +26,7 @@ export const signup = async (req: Request, res: Response): Promise<any> => {
         newUser.save();
 
         const token = jwt.sign(
-            { name: newUser.fullname, email: newUser.email },
+            { id: newUser._id, name: newUser.fullname, email: newUser.email },
             process.env.JWT_SECRET!,
             { expiresIn: "1d" }
         );
@@ -77,7 +77,7 @@ export const login = async (req: Request, res: Response): Promise<any> => {
         }
 
         const token = jwt.sign(
-            { name: user.fullname, email: user.email },
+            { id: user._id, name: user.fullname, email: user.email },
             process.env.JWT_SECRET!,
             { expiresIn: "1d" }
         );
@@ -90,7 +90,7 @@ export const login = async (req: Request, res: Response): Promise<any> => {
                 maxAge: 24 * 60 * 60 * 1000,
             })
             .json({
-                message: "User created successfully",
+                message: "User LogIn successfully",
                 user: {
                     id: user._id,
                     fullname: user.fullname,

@@ -9,9 +9,9 @@ import {
 
 const router = express.Router();
 
-router.use("/signup", signup);
-router.use("/login", login);
-router.use("/logout", logout);
-router.use("/me", protect, getMe);
+router.post("/signup", signup);
+router.post("/login", login);
+router.post("/logout", logout);
+router.get("/me", protect, getMe);
 
 export default router;
