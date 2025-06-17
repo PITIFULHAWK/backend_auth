@@ -23,7 +23,7 @@ export const signup = async (req: Request, res: Response): Promise<any> => {
         const { fullname, email, password } = req.body;
 
         const newUser = new User({ fullname, email, password });
-        newUser.save();
+        await newUser.save();
 
         const token = jwt.sign(
             { id: newUser._id, name: newUser.fullname, email: newUser.email },
@@ -71,7 +71,7 @@ export const login = async (req: Request, res: Response): Promise<any> => {
                 .json({ message: "No user exist with this email." });
         }
 
-        const isPasswordValid = user.comparePassword(password);
+        const isPasswordValid = await user.comparePassword(password);
         if (!isPasswordValid) {
             return res.status(400).json({ message: "Invalid password." });
         }

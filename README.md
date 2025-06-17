@@ -186,22 +186,14 @@ Replace `http://localhost:3000` with your actual backend URL if it's different.
 1.  **Register a New User:**
 
     ```bash
-    curl -X POST \
-         -c cookiejar.txt \
-         -H "Content-Type: application/json" \
-         -d '{"fullName": "Test User", "email": "test@example.com", "password": "password123"}' \
-         http://localhost:3000/api/auth/signup
+    curl -X POST -c cookiejar.txt -H "Content-Type: application/json" -d '{"fullname": "Jhon Doe", "email": "jhondoe@gmail.com", "password": "jhondoe123"}' http://localhost:3000/api/auth/signup
     ```
     Expected Response: `{"message":"User created successfully", "user":{...}, "token":"..."}` (and a `token` cookie will be set)
 
 2.  **Login User:**
 
     ```bash
-    curl -X POST \
-         -c cookiejar.txt \
-         -H "Content-Type: application/json" \
-         -d '{"email": "test@example.com", "password": "password123"}' \
-         http://localhost:3000/api/auth/login
+    curl -X POST -c cookiejar.txt -H "Content-Type: application/json" -d '{"email": "jhondoe@gmail.com", "password": "jhondoe123"}' http://localhost:3000/api/auth/login
     ```
     * `-c cookiejar.txt`: Saves the response cookies (including the `token`) to `cookiejar.txt` for subsequent requests.
     Expected Response: `{"message":"Logged in successfully", "user":{...}, "token":"..."}`
@@ -209,9 +201,7 @@ Replace `http://localhost:3000` with your actual backend URL if it's different.
 3.  **Get Current User Profile (`/me` endpoint):**
 
     ```bash
-    curl -X GET \
-         -b cookiejar.txt \
-         http://localhost:3000/api/auth/me
+    curl -X GET -b cookiejar.txt http://localhost:3000/api/auth/me
     ```
     * `-b cookiejar.txt`: Sends the cookies saved from the login response.
     Expected Response: `{"success":true, "data":{...}}` (your user profile data)
@@ -219,9 +209,7 @@ Replace `http://localhost:3000` with your actual backend URL if it's different.
 4.  **Logout User:**
 
     ```bash
-    curl -X POST \
-         -H "Content-Type: application/json" \
-         http://localhost:3000/api/auth/logout
+    curl -X POST -c cookiejar.txt -H "Content-Type: application/json" http://localhost:3000/api/auth/logout
     ```
     Expected Response: `{"message":"Logged out successfully"}`
 
