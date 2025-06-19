@@ -133,10 +133,9 @@ This method runs *only* your Bun.js backend in a Docker container, but it connec
     docker run -p 3000:3000 \
                -e MONGO_URL="${MONGO_URL}" \
                -e JWT_SECRET="${JWT_SECRET}" \
-               -e NODE_ENV="${NODE_ENV}" \
                my-auth-backend
     ```
-    * Replace `${MONGO_URL}`, `${JWT_SECRET}`, and `${NODE_ENV}` with your actual values (or ensure they are set as shell environment variables before running this command). For simplicity, you can hardcode them here for testing if preferred, but `.env` is better.
+    * Replace `${MONGO_URL}` and `${JWT_SECRET}` with your actual values (or ensure they are set as shell environment variables before running this command). For simplicity, you can hardcode them here for testing if preferred, but `.env` is better.
     * `JWT_SECRET` is crucial and must be set.
     * `NODE_ENV` is important for cookie security (e.g., `secure: true` in production).
 
